@@ -1,19 +1,21 @@
 #pragma once
 
 #include "../include/Intf.h"
+#include <unordered_map>
 
 namespace Pluto
 {
-	struct CCore : ICore
+	struct CCoreImpl : ICore
 	{
-		virtual StringView GetLastErrorString() = 0;
-		virtual IAllocator& GetAllocator() = 0;
-		virtual ILogger& GetLogger() = 0;
-		virtual int RegisterModule(IModule&) = 0;
-		virtual void UnregisterFactory(int Cookie) = 0;
 
-		virtual void Connect() = 0;
-		virtual void Disconnect() = 0;
+	private:
+		virtual IMemoryResource& GetMemoryResource() = 0;
+		virtual ILogger& GetLogger() = 0;
+
+		virtual int RegisterModule(IModule&) = 0;
+		virtual void UnregisterModule(int Cookie) = 0;
+
+		unordered_map<int, 
 
 	};
 }

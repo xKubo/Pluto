@@ -1,33 +1,51 @@
 #pragma once
 
 #include "Intf.h"
-
-#include <memory_resource>
+#include <string>
+#include <sstream>
 
 namespace Pluto
 {
-	struct CPlugin
+	namespace detail
 	{
-		CPlugin()
+		template <typename ... Args>
+		inline std::string ArgsToString(const Args&... args...)
+		{
+			std::ostringstream oss;
+			detail::ArgsToString(oss, args...);
+		}
+
+
+		template <typename A ,typename ... Args>
+		inline void ArgsToString(std::ostringstream& oss, const A& a, const Args&... args...)
+		{
+			oss << a;
+			ArgsToString(oss, args...);
+		}
+
+		inline void ArgsToString(std::ostringstream& oss)
+		{
+			
+		}
+
+	}
+
+
+	struct CLogger
+	{
+		CLogger(ILogger&l, StringView Module) :
+			m_Logger(l)
 		{
 
 		}
-	};
 
-	struct CObject
-	{
-
-	};
-
-	struct CString
-	{
-
-	};
-
-	struct CCore
-	{
-
+		template <typename ... Args>
+		void LogI(const Args&... a...)
+		{
+			m_Logger.Log(Level::Info, m_Module, detail::ArgsToString(a));
+		}
 	private:
+		std::string m_Module;
+		ILogger& m_Logger;
 	};
-
 }

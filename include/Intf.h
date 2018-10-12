@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <utility>
 
 namespace Pluto
 {
@@ -26,7 +27,7 @@ namespace Pluto
 
 	struct EError 
 	{
-		EError(String s) : m_Text(move(s))
+		EError(String s) : m_Text(std::move(s))
 		{
 
 		}

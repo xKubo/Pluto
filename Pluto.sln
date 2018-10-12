@@ -4,11 +4,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MainApp", "MainApp\MainApp.vcxproj", "{CC60B1C4-2D53-4B3F-BBD4-350E9E5701CE}"
-	ProjectSection(ProjectDependencies) = postProject
-		{D4EFA965-43EB-44B3-AE9E-32996CA87BAF} = {D4EFA965-43EB-44B3-AE9E-32996CA87BAF}
-	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PlutoCore", "PlutoCore\PlutoCore.vcxproj", "{D4EFA965-43EB-44B3-AE9E-32996CA87BAF}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenCV", "Modules\OpenCV\OpenCV.vcxproj", "{509D672C-A684-4DAD-8E22-26E9D823D42E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,6 +33,14 @@ Global
 		{D4EFA965-43EB-44B3-AE9E-32996CA87BAF}.Release|x64.Build.0 = Release|x64
 		{D4EFA965-43EB-44B3-AE9E-32996CA87BAF}.Release|x86.ActiveCfg = Release|Win32
 		{D4EFA965-43EB-44B3-AE9E-32996CA87BAF}.Release|x86.Build.0 = Release|Win32
+		{509D672C-A684-4DAD-8E22-26E9D823D42E}.Debug|x64.ActiveCfg = Debug|x64
+		{509D672C-A684-4DAD-8E22-26E9D823D42E}.Debug|x64.Build.0 = Debug|x64
+		{509D672C-A684-4DAD-8E22-26E9D823D42E}.Debug|x86.ActiveCfg = Debug|Win32
+		{509D672C-A684-4DAD-8E22-26E9D823D42E}.Debug|x86.Build.0 = Debug|Win32
+		{509D672C-A684-4DAD-8E22-26E9D823D42E}.Release|x64.ActiveCfg = Release|x64
+		{509D672C-A684-4DAD-8E22-26E9D823D42E}.Release|x64.Build.0 = Release|x64
+		{509D672C-A684-4DAD-8E22-26E9D823D42E}.Release|x86.ActiveCfg = Release|Win32
+		{509D672C-A684-4DAD-8E22-26E9D823D42E}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
