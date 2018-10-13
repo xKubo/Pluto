@@ -37,7 +37,8 @@ namespace Pluto
 	struct CLogger
 	{
 		CLogger(ILogger&l, StringView Module) :
-			m_Logger(l)
+			m_Logger(l),
+			m_Module(Module)
 		{
 
 		}

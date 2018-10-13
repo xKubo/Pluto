@@ -25,15 +25,30 @@ namespace Pluto::Core
 		PPlugin m_pPlugin;
 	};
 
-	struct CCoreImpl : ICore
+	struct CPlutoImpl : IPluto, ICore
 	{
-		CCoreImpl(ILogger& l, IMemoryResource &mr) :
+		CPlutoImpl(ILogger& l, IMemoryResource &mr) :
 			m_Logger(l),
 			m_MemoryResource(mr)
 		{
 
 		}
-	private:
+
+		virtual ICore& GetCore() override
+		{
+			return *this;
+		}
+
+		virtual PGraph CreateGraph() override
+		{
+			throw EError{ "Not implemented" };
+		}
+
+		virtual PGraph LoadGraph(JSONView cfg) override
+		{
+			throw EError{ "Not implemented" };
+		}
+
 		virtual IMemoryResource& GetMemoryResource()
 		{
 			return m_MemoryResource;
