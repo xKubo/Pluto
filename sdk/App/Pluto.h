@@ -35,12 +35,12 @@ namespace Pluto
 			m_Library.load(LibName, boost::dll::load_mode::append_decorations);
 			std::string AliasName = "InitPluto";
 			LogI("Getting alias : ", AliasName);
-			auto fInitPluto = m_Library.get_alias<Pluto::InitPluto>(AliasName);
-			m_pPluto = fInitPluto(l, mr);
+			auto fInitPluto = m_Library.get_alias<decltype(Pluto::InitPluto)>(AliasName);
+			m_pPluto = &fInitPluto(l, mr);
 		}
 
 
-		CCore& GetCore()
+		ICore& GetCore()
 		{
 			return m_pPluto->GetCore();
 		}
@@ -53,7 +53,7 @@ namespace Pluto
 		~CPluto()
 		{
 			LogI("Uniting Pluto");
-			auto fUninitPluto = m_Library.get_alias<Pluto::UninitPluto>("UninitPluto");
+			auto fUninitPluto = m_Library.get_alias<decltype(Pluto::UninitPluto)>("UninitPluto");
 			fUninitPluto();
 		}
 

@@ -2,21 +2,65 @@
 
 #include "../include/Intf.h"
 #include <unordered_map>
+#include <map>
 
-namespace Pluto
+namespace Pluto::Core
 {
-	struct CCoreImpl : ICore
+
+	struct CModule
 	{
 
 	private:
-		virtual IMemoryResource& GetMemoryResource() = 0;
-		virtual ILogger& GetLogger() = 0;
+		//Pluto::IModule
+	};
 
-		virtual int RegisterModule(IModule&) = 0;
-		virtual void UnregisterModule(int Cookie) = 0;
+	struct CPlugin
+	{
+		CPlugin(PPlugin pPlugin) : m_pPlugin(move(pPlugin))
+		{
 
-		unordered_map<int, 
+		}
 
+	private:
+		PPlugin m_pPlugin;
+	};
+
+	struct CCoreImpl : ICore
+	{
+		CCoreImpl(ILogger& l, IMemoryResource &mr) :
+			m_Logger(l),
+			m_MemoryResource(mr)
+		{
+
+		}
+	private:
+		virtual IMemoryResource& GetMemoryResource()
+		{
+			return m_MemoryResource;
+		}
+
+		virtual ILogger& GetLogger()
+		{
+			return m_Logger;
+		}
+
+		virtual int RegisterModule(IModule& m) override
+		{
+			//m_Modules.insert()
+			return 42;
+		}
+
+		virtual void UnregisterModule(int Cookie) override
+		{
+			//m_Modules.erase(Cookie);
+		}
+
+		ILogger& m_Logger;
+		IMemoryResource& m_MemoryResource;
+		
+		std::map<std::string, Pluto::PPlugin> m_Plugins;
+		std::map<std::string, Pluto::SPMedia> m_Media;
+		std::map<std::string, CModule> m_Modules;
 	};
 }
 
