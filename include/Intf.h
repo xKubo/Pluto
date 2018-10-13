@@ -1,7 +1,6 @@
 #pragma once
 #include <string>
 #include <utility>
-#include <memory_resource>
 
 namespace Pluto
 {
@@ -19,14 +18,8 @@ namespace Pluto
 		{
 
 		}
-		
-		operator StringView() const
-		{
-			return m_View;
-		}
 	private:
 
-		StringView m_View;
 	};
 
 	using JSONView = StringView;
@@ -68,7 +61,7 @@ namespace Pluto
 	struct IMedia
 	{
 		virtual JSONData GetMediaInfo() = 0;
-//		virtual void Draw(ICanvas& c, const CRect &r) = 0;
+		virtual void Draw(ICanvas& c, const CRect &r) = 0;
 		virtual ~IMedia() {}
 	};
 
@@ -109,10 +102,7 @@ namespace Pluto
 		virtual JSONView GetInfo() = 0;
 		virtual PPlugin CreatePlugin(StringView Name, JSONView PluginInfo) = 0;
 		virtual PMedium CreateMedium(StringView Name, JSONView MediaInfo) = 0;
-		virtual ~IModule() {}
 	};
-
-	using PModule = std::unique_ptr<IModule>;
 
 	using PluginID = StringView;
 
