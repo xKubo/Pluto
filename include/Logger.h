@@ -52,4 +52,5 @@ namespace Pluto
 		std::string m_Module;
 		ILogger& m_Logger;
 	};
+
 }

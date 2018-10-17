@@ -130,13 +130,48 @@ namespace Pluto
 	struct IMedia
 	{
 		virtual JSONData GetMediaInfo() = 0;
-//		virtual void Draw(ICanvas& c, const CRect &r) = 0;
 		virtual ~IMedia() {}
+	};
+
+	struct CPoint
+	{
+		int x, y;
+	};
+	struct CSize
+	{
+		int w, h;
+	};
+
+	struct CRect
+	{
+		CSize sz;
+		CPoint pt;
+	};
+
+	using Color = int;
+
+	enum Format
+	{
+		RGB24,
+	};
+
+	struct CImageBits
+	{
+		Format GetFormat() const;
+		CSize Resolution() const;
 	};
 
 	struct ICanvas
 	{
+		virtual void DrawLine(Color c, CPoint p1, CPoint p2) = 0;
+		virtual void DrawBits(Color c, CPoint p, const CImageBits& b) = 0;
+		virtual void DrawBits(Color c, CRect r, const CImageBits& b) = 0;
+		virtual void DrawEllipse(Color c, CRect Bounds) = 0;
+	};
 
+	struct IMediaDraw
+	{
+		virtual void Draw(ICanvas& c, const CRect &r) = 0;
 	};
 
 	struct IImage : IMedia
@@ -210,6 +245,20 @@ namespace Pluto
 		virtual ICore& GetCore() = 0;
 		virtual PGraph CreateGraph() = 0;
 		virtual PGraph LoadGraph(JSONView cfg) = 0;
+	};
+
+	struct IConfiguration;
+	using SPConfiguration = std::shared_ptr<IConfiguration>;
+
+	struct Configuration;
+	using PConfiguration = std::unique_ptr<Configuration>;
+	struct ConfigurationPtr = Configuration*;
+
+	struct IUtils
+	{
+		virtual PConfiguration LoadFromFile() = 0;
+		virtual Configuration& GetByPath(StringView Path, Configuration& c) = 0;
+		virtual StringView GetVal(StringView Path, Configuration& c) = 0;
 	};
 
 	IPluto& InitPluto(ILogger&l, IMemoryResource& r);
