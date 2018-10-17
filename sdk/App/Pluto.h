@@ -52,7 +52,7 @@ namespace Pluto
 
 		~CPluto()
 		{
-			LogI("Uniting Pluto");
+			LogI("Uniniting Pluto");
 			auto fUninitPluto = m_Library.get_alias<decltype(Pluto::UninitPluto)>("UninitPluto");
 			fUninitPluto();
 		}

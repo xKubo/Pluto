@@ -3,6 +3,8 @@
 #include <utility>
 #include <memory_resource>
 
+#include "Configuration.h"
+
 namespace Pluto
 {
 
@@ -88,8 +90,8 @@ namespace Pluto
 		StringView m_View;
 	};
 
-	using JSONView = StringView;
-	using JSONData = String;
+	using JSONView = CConfigurationView;
+	using JSONData = Configuration;
 
 	struct EError 
 	{

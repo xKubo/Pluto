@@ -24,13 +24,16 @@
     <ClInclude Include="..\include\Plugin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\Helpers.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\Intf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\sdk\App\Pluto.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Configuration.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Logger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
