@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../include/Intf.h"
+#include "../Common/Intf.h"
 #include <unordered_map>
 #include <map>
 

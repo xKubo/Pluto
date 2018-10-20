@@ -2,7 +2,7 @@
 
 #include <memory>
 
-#include "../../include/Intf.h"
+#include "../../Common/Intf.h"
 
 namespace Pluto
 {

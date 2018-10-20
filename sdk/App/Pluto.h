@@ -1,8 +1,10 @@
 #pragma once
-#include "../../include/Intf.h"
-#include "../../include/Logger.h"
+
 #include <memory_resource>
 #include <boost/dll.hpp>
+
+#include "../../Common/Intf.h"
+#include "../../Common/Logger.h"
 
 namespace Pluto
 {
