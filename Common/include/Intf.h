@@ -13,8 +13,6 @@ namespace Pluto
 
 	IMemoryResource& GetDefaultMemoryResource();
 
-	using StringView = std::string_view;
-
 	struct String
 	{
 		String() 
@@ -90,8 +88,6 @@ namespace Pluto
 		StringView m_View;
 	};
 
-	using JSONView = CConfigurationView;
-	using JSONData = Configuration;
 
 	struct EError 
 	{
@@ -131,7 +127,7 @@ namespace Pluto
 
 	struct IMedia
 	{
-		virtual JSONData GetMediaInfo() = 0;
+		virtual CConfigurationView GetMediaInfo() = 0;
 		virtual ~IMedia() {}
 	};
 
@@ -189,8 +185,8 @@ namespace Pluto
 
 	struct IPlugin
 	{
-		virtual JSONView StoreParams() = 0;
-		virtual JSONView GetPluginInfo() = 0;
+		virtual CConfigurationView StoreParams() = 0;
+		virtual CConfigurationView GetPluginInfo() = 0;
 		virtual TMediaArray Prepare(TMediaArray Inputs) = 0;
 		virtual void Apply() = 0;
 		virtual ~IPlugin() {}
@@ -205,9 +201,9 @@ namespace Pluto
 
 	struct IModule
 	{
-		virtual JSONView GetInfo() = 0;
-		virtual PPlugin CreatePlugin(StringView Name, JSONView PluginInfo) = 0;
-		virtual PMedium CreateMedium(StringView Name, JSONView MediaInfo) = 0;
+		virtual CConfigurationView GetInfo() = 0;
+		virtual PPlugin CreatePlugin(StringView Name, CConfigurationView PluginInfo) = 0;
+		virtual PMedium CreateMedium(StringView Name, CConfigurationView MediaInfo) = 0;
 		virtual ~IModule() {}
 	};
 
@@ -223,7 +219,7 @@ namespace Pluto
 		virtual void Connect(PluginID id1, int Pin1, PluginID id2, int Pin2) = 0;
 		virtual void Disconnect(PluginID id1, int Pin) = 0;
 
-		virtual JSONView GetGraphConnections() = 0;
+		virtual CConfigurationView GetGraphConnections() = 0;
 
 		virtual void Run() = 0;
 		virtual void Save() = 0;
@@ -246,22 +242,14 @@ namespace Pluto
 	{
 		virtual ICore& GetCore() = 0;
 		virtual PGraph CreateGraph() = 0;
-		virtual PGraph LoadGraph(JSONView cfg) = 0;
+		virtual PGraph LoadGraph(CConfigurationView cfg) = 0;
 	};
 
 	struct IConfiguration;
 	using SPConfiguration = std::shared_ptr<IConfiguration>;
 
 	struct Configuration;
-	using PConfiguration = std::unique_ptr<Configuration>;
-	struct ConfigurationPtr = Configuration*;
 
-	struct IUtils
-	{
-		virtual PConfiguration LoadFromFile() = 0;
-		virtual Configuration& GetByPath(StringView Path, Configuration& c) = 0;
-		virtual StringView GetVal(StringView Path, Configuration& c) = 0;
-	};
 
 	IPluto& InitPluto(ILogger&l, IMemoryResource& r);
 	void UninitPluto();

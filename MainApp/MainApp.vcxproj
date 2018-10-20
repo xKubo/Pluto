@@ -156,7 +156,6 @@
     <ClInclude Include="..\include\Configuration.h" />
     <ClInclude Include="..\include\Intf.h" />
     <ClInclude Include="..\include\Logger.h" />
-    <ClInclude Include="..\include\Main.h" />
     <ClInclude Include="..\include\Plugin.h" />
     <ClInclude Include="..\sdk\App\Pluto.h" />
     <ClInclude Include="pch.h" />

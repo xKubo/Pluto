@@ -1,6 +1,6 @@
 #pragma once
 #include "../../include/Intf.h"
-#include "../../include/Helpers.h"
+#include "../../include/Logger.h"
 #include <memory_resource>
 #include <boost/dll.hpp>
 
@@ -45,7 +45,7 @@ namespace Pluto
 			return m_pPluto->GetCore();
 		}
 
-		CGraph LoadGraph(JSONView j)
+		CGraph LoadGraph(CConfigurationView j)
 		{
 			return m_pPluto->LoadGraph(j);
 		}

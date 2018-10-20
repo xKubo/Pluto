@@ -44,7 +44,7 @@ namespace Pluto::Core
 			throw EError{ "Not implemented" };
 		}
 
-		virtual PGraph LoadGraph(JSONView cfg) override
+		virtual PGraph LoadGraph(CConfigurationView cfg) override
 		{
 			throw EError{ "Not implemented" };
 		}

@@ -2,6 +2,10 @@
 
 namespace Pluto
 {
+	using StringView = std::string_view;
+
+	struct CConfigurationView;
+
 	struct CConfiguration
 	{
 		CConfiguration() = default;
@@ -14,10 +18,11 @@ namespace Pluto
 
 		virtual ~CConfiguration() {}
 
+		operator CConfigurationView();
 		
 	private:
 		struct CImpl;
-		std::unique_ptr<CImpl> m_pImpl = nullptr;
+		//std::unique_ptr<CImpl> m_pImpl = nullptr;
 	};
 
 	struct CConfigurationView
@@ -27,4 +32,9 @@ namespace Pluto
 	private:
 		CImpl *m_pImpl;
 	};
+
+	CConfiguration LoadFromFile(StringView FilePath);
+	CConfiguration LoadFromString(StringView);
+	CConfigurationView GetByPath(StringView Path, CConfigurationView c);
+	StringView GetVal(StringView Path, CConfigurationView& c);
 }
