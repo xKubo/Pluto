@@ -1,15 +1,26 @@
 #pragma once
 
+#include "String.h"
+
 namespace Pluto
 {
-	using StringView = std::string_view;
+
+	struct CImpl;
 
 	struct CConfigurationView
 	{
+		CConfigurationView(const CImpl& Impl) :
+			m_Impl(Impl)
+		{
 
+		}
+
+		const CImpl& impl()
+		{
+			return m_Impl;
+		}
 	private:
-		struct CImpl;
-		CImpl *m_pImpl;
+		const CImpl &m_Impl;
 	};
 
 	struct CConfiguration
@@ -26,13 +37,38 @@ namespace Pluto
 
 		operator CConfigurationView();
 		
+		CImpl& impl()
+		{
+			return *m_pImpl;
+		}
 	private:
-		struct CImpl;
+		
 		std::unique_ptr<CImpl> m_pImpl;
 	};
 
 	CConfiguration LoadFromFile(StringView FilePath);
 	CConfiguration LoadFromString(StringView);
 	CConfigurationView GetByPath(StringView Path, CConfigurationView c);
-	StringView GetVal(StringView Path, CConfigurationView& c);
+	std::string GetStringVal(StringView Path, CConfigurationView c);
+
+	inline int GetIntVal(StringView Path, CConfigurationView c)
+	{
+		return std::stoi(GetStringVal(Path, c));
+	}
+
+	template <typename T>
+	inline T GetVal(StringView Path, CConfigurationView c);
+
+	template <>
+	inline int GetVal<int>(StringView Path, CConfigurationView c)
+	{
+		return GetIntVal(Path, c);
+	}
+
+	template <>
+	inline std::string GetVal<std::string>(StringView Path, CConfigurationView c)
+	{
+		return GetStringVal(Path, c);
+	}
+
 }

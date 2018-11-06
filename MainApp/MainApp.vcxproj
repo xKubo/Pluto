@@ -154,9 +154,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\Common\Configuration.h" />
+    <ClInclude Include="..\Common\conversions.h" />
     <ClInclude Include="..\Common\Intf.h" />
     <ClInclude Include="..\Common\Logger.h" />
     <ClInclude Include="..\Common\Plugin.h" />
+    <ClInclude Include="..\Common\String.h" />
     <ClInclude Include="..\sdk\App\Pluto.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>

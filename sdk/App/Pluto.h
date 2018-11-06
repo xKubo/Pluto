@@ -32,6 +32,7 @@ namespace Pluto
 		CPluto(ILogger& l, IMemoryResource& mr) :
 			CLogger(l, "Pluto")
 		{
+			m_pDefaultResource = &mr;
 			std::string LibName = "PlutoCore";
 			LogI("Loading library: ", LibName);
 			m_Library.load(LibName, boost::dll::load_mode::append_decorations);
@@ -60,9 +61,15 @@ namespace Pluto
 		}
 
 	private:
-
+		friend IMemoryResource& GetDefaultMemoryResource();
 		TLibrary m_Library;
+		inline static IMemoryResource* m_pDefaultResource = nullptr;
 		IPluto* m_pPluto = nullptr;
 	};
+
+	IMemoryResource& GetDefaultMemoryResource()
+	{
+		return *CPluto::m_pDefaultResource;
+	}
 
 }
